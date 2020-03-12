@@ -8,6 +8,9 @@ public class OteApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(OteApplication.class, args);
+
+        Travel myTravel = new Travel();
+        myTravel.startJourney();
     }
 
 }
