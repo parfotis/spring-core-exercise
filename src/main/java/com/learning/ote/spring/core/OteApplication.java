@@ -1,5 +1,6 @@
 package com.learning.ote.spring.core;
 
+import com.learning.ote.spring.core.vehicle.Car;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -10,6 +11,7 @@ public class OteApplication {
         SpringApplication.run(OteApplication.class, args);
 
         Travel myTravel = new Travel();
+        myTravel.setVehicle(new Car());
         myTravel.startJourney();
     }
 

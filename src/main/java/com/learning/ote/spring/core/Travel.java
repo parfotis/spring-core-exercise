@@ -1,12 +1,15 @@
 package com.learning.ote.spring.core;
 
-import com.learning.ote.spring.core.vehicle.Car;
+import com.learning.ote.spring.core.vehicle.Vehicle;
 
 public class Travel {
-    Car car = new Car();
+    Vehicle vehicle;
 
     public void startJourney() {
-        car.drive();
+        vehicle.start();
     }
 
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
+    }
 }

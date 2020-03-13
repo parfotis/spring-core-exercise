@@ -1,8 +1,8 @@
 package com.learning.ote.spring.core.vehicle;
 
-public class Car {
+public class Car implements Vehicle {
 
-    public void drive() {
+    public void start() {
         System.out.println("Travel by Car");
     }
 
