@@ -1,8 +1,8 @@
 package com.learning.ote.spring.core.vehicle;
 
-import com.learning.ote.spring.core.annotation.BeanAnnotation;
+import org.springframework.stereotype.Component;
 
-@BeanAnnotation(name = "car")
+@Component()
 public class Car implements Vehicle {
     private String plateNumber;
 
