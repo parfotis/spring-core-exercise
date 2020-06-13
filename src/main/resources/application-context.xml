@@ -5,8 +5,5 @@
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!--Define your beans here -->
-    <bean id="car"
-          class="com.learning.ote.spring.core.vehicle.Car">
-    </bean>
 
 </beans>
