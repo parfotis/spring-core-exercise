@@ -1,4 +1,4 @@
-package com.learning.ote.spring.core;
+package com.learning.ote.spring.core.travel;
 
 import com.learning.ote.spring.core.vehicle.Vehicle;
 
