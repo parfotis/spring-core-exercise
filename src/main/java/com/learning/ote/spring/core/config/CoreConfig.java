@@ -4,6 +4,7 @@ import com.learning.ote.spring.core.vehicle.Bike;
 import com.learning.ote.spring.core.vehicle.Car;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 @Configuration
 public class CoreConfig {
@@ -16,6 +17,7 @@ public class CoreConfig {
 
     //    Bean declaration
     @Bean(name = "car")
+    @Primary
     public Car getCar() {
         Car car = new Car();
         car.setPlateNumber("ZHI-6344");
