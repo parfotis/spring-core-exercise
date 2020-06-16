@@ -3,7 +3,6 @@ package com.learning.ote.spring.core;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.learning.ote.spring.core.travel.*;
 
@@ -11,10 +10,7 @@ import com.learning.ote.spring.core.travel.*;
 public class OteApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(OteApplication.class, args);
-
-        //We will just take ask for an instance of each bean from the Application Context.
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("application-context.xml");
+        ApplicationContext ctx = SpringApplication.run(OteApplication.class, args);
 
         AutowiredInjectedTravel autowiredInjectedTravel = (AutowiredInjectedTravel) ctx.getBean("autowiredInjectedTravel");
         autowiredInjectedTravel.startJourney();
