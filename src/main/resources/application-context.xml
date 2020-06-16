@@ -38,7 +38,7 @@
 
     <!--Autowire: autowire="constructor" It needs a constructor to use-->
     <!--<bean name="autowiredInjectedTravel"-->
-    <!--class="ote.spring.core.travel.AutowiredInjectedTravel"-->
+    <!--class="com.learning.ote.spring.core.travel.AutowiredInjectedTravel"-->
     <!--autowire="constructor">-->
     <!--<constructor-arg index="0" ref="car"/>-->
     <!--</bean>-->
