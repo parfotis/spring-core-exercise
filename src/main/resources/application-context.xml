@@ -12,7 +12,7 @@
     <!--</bean>-->
 
     <!--Setter Injection-->
-    <!-- property name="Name of the propery in the class, as derived by the setter, Spring will find the correct Setter for it" -->
+    <!-- property name="Name of the property in the class, as derived by the setter, Spring will find the correct Setter for it" -->
     <!-- ref="name of the bean as declared in this xml"-->
     <bean name="setterInjectedTravel"
           class="com.learning.ote.spring.core.travel.SetterInjectedTravel">
@@ -26,7 +26,6 @@
           class="com.learning.ote.spring.core.travel.ConstructorInjectedTravel">
         <constructor-arg index="0" ref="car"/>
     </bean>
-
 
     <!--Autowire: autowire="byName, byType" It needs a setter-->
     <bean name="autowiredInjectedTravel"
