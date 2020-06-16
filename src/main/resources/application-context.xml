@@ -7,9 +7,9 @@
           class="com.learning.ote.spring.core.vehicle.Car">
     </bean>
 
-    <!--<bean id="bike"-->
-    <!--class="com.learning.ote.spring.core.vehicle.Bike">-->
-    <!--</bean>-->
+    <!--<bean id="bike"
+    class="com.learning.ote.spring.core.vehicle.Bike" name="vehicle">
+    </bean>-->
 
     <!--Setter Injection-->
     <!-- property name="Name of the property in the class, as derived by the setter, Spring will find the correct Setter for it" -->
@@ -31,6 +31,9 @@
     <bean name="autowiredInjectedTravel"
           class="com.learning.ote.spring.core.travel.AutowiredInjectedTravel" autowire="byType">
     </bean>
+    <!--<bean name="autowiredInjectedTravel"
+          class="com.learning.ote.spring.core.travel.AutowiredInjectedTravel" autowire="byName">
+    </bean>-->
 
 
     <!--Let me try by name also, and by type with 2 beans-->
