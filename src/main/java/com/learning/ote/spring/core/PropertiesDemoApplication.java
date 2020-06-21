@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootApplication
-@ImportResource("classpath:application-context.xml")
+@ImportResource(locations = {"classpath:application-context.xml", "classpath:another-application-context.xml"})
 public class PropertiesDemoApplication implements CommandLineRunner {
 
     @Value("${key.something}")

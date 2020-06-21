@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@ContextConfiguration("classpath:application-context.xml")
+@ContextConfiguration(locations = {"classpath:application-context.xml", "classpath:another-application-context.xml"})
 public class PropertiesDemoApplicationTests {
 
     @Autowired
