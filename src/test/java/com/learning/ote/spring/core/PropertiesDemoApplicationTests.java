@@ -6,22 +6,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.env.Environment;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@ContextConfiguration(locations = {"classpath:application-context.xml", "classpath:another-application-context.xml"})
+//@ContextConfiguration(locations = {"classpath:application-context.xml", "classpath:another-application-context.xml"})
 public class PropertiesDemoApplicationTests {
-
     @Autowired
     private Environment env;
 
     @Value("${key.something}")
     private String injectedProperty;
 
+    //this is loaded from application.properties
+    @Value("${default.file.property}")
+    private String injectedFromDefaultFile;
+
     @Test
     public void givenContext_noException() {
+        System.out.println("value injected from default file via @Value:" + injectedFromDefaultFile);
+        System.out.println("value injected from default file via Environment:" + env.getProperty("default.file.property"));
+
         System.out.println("value injected via @Value:" + injectedProperty);
         System.out.println("value injected via Environment:" + env.getProperty("key.something"));
     }
