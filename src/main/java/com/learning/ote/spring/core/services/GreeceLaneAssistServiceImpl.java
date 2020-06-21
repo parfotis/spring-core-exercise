@@ -6,13 +6,13 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 @Service
-@Profile({"gr", "default"})
+@Profile("gr")
 @Primary
 public class GreeceLaneAssistServiceImpl implements LaneAssistService {
 
     @Override
-    public void provideDrivingLane() {
-        System.out.println("Drive in " + DrivingLane.RIGHT.name() + " lane");
+    public String provideDrivingLane() {
+        return "Drive in " + DrivingLane.RIGHT.name() + " lane";
     }
 
 }

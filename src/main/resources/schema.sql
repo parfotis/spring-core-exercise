@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS VEHICLE;
+
 create table VEHICLE
 (
 	id int not null,

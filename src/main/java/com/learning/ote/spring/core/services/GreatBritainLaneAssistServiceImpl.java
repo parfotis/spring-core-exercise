@@ -9,7 +9,8 @@ import org.springframework.stereotype.Service;
 public class GreatBritainLaneAssistServiceImpl implements LaneAssistService {
 
     @Override
-    public void provideDrivingLane() {
-        System.out.println("Drive in " + DrivingLane.LEFT.name() + " lane");
+    public String provideDrivingLane() {
+        return "Drive in " + DrivingLane.RIGHT.name() + " lane";
     }
+
 }

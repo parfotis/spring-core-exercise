@@ -1,4 +1,4 @@
-package com.learning.ote;
+package com.learning.ote.spring.core;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
