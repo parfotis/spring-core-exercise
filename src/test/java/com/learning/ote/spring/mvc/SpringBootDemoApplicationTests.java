@@ -1,13 +1,13 @@
-package com.learning.ote.spring.core;
+package com.learning.ote.spring.mvc;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class OteApplicationTests {
+class SpringBootDemoApplicationTests {
 
-    @Test
-    void contextLoads() {
-    }
+	@Test
+	void contextLoads() {
+	}
 
 }
