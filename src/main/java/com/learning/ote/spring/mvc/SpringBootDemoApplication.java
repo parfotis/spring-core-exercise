@@ -61,6 +61,11 @@ public class SpringBootDemoApplication implements CommandLineRunner {
 		bookService.findAll().forEach(book -> logger.info(book.toString()));
 		logger.info("=============================");
 		logger.info("=============================");
+		// Carefull with unique constraint in Author entity for first-last name columns
+		/*logger.info("====Saving new Author====");
+		Author author = new Author();
+		author.setFirstName("Stelios");
+		author.setLastName("Matthaios");
 
 		logger.info("=============================");
 		logger.info("====Finding Books by author====");
@@ -72,6 +77,6 @@ public class SpringBootDemoApplication implements CommandLineRunner {
 		logger.info("====Finding Book by title====");
 		bookService.findByTitle("The").forEach(book -> logger.info(book.toString()));
 		logger.info("=============================");
-		logger.info("=============================");
+		logger.info("=============================");*/
 	}
 }
