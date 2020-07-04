@@ -5,24 +5,15 @@
     <!--Define your beans here -->
 
     <bean id="Car"
-          class="gr.ote.nextgentraining.spring.core.entities.Car">
+          class="gr.ote.nextgentraining.spring.core.entities.Car"
+          primary="true">
     </bean>
 
     <bean id="MotorBike"
           class="gr.ote.nextgentraining.spring.core.entities.MotorBike">
     </bean>
 
-    <bean id="VehicleList" class="java.util.ArrayList">
-        <constructor-arg>
-            <list>
-                <ref bean="Car"/>
-                <ref bean="MotorBike"/>
-            </list>
-        </constructor-arg>
-    </bean>
-
     <bean name="User"
-          class="gr.ote.nextgentraining.spring.core.entities.User">
-        <constructor-arg index="0" ref="VehicleList"/>
+          class="gr.ote.nextgentraining.spring.core.entities.User" autowire="constructor">
     </bean>
 </beans>

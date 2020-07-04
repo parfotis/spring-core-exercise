@@ -8,9 +8,12 @@ public class User {
     private String firstName;
     private String lastname;
     private String email;
-    List<Vehicle> vehicles;
+    Vehicle vehicle;
 
-    public User(List<Vehicle> vehicles) {
-        this.vehicles = vehicles;
+    public User() {
+    }
+
+    public User(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 }
