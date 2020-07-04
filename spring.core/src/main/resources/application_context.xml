@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--Define your beans here -->
+
+    <bean id="Car"
+          class="gr.ote.nextgentraining.spring.core.entities.Car">
+    </bean>
+
+    <bean id="MotorBike"
+          class="gr.ote.nextgentraining.spring.core.entities.MotorBike">
+    </bean>
+
+    <bean id="VehicleList" class="java.util.ArrayList">
+        <constructor-arg>
+            <list>
+                <ref bean="Car"/>
+                <ref bean="MotorBike"/>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean name="User"
+          class="gr.ote.nextgentraining.spring.core.entities.User">
+        <constructor-arg index="0" ref="VehicleList"/>
+    </bean>
+</beans>
