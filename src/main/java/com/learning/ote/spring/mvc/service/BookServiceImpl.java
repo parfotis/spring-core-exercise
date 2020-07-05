@@ -24,13 +24,14 @@ public class BookServiceImpl implements BookService {
     @Override
     public BookDTO findById(Long id) {
         BookEntity book;
+        BookDTO bookDTO;
         try {
             book = bookRepository.findById(id).get();
+            bookDTO = BookConverter.convert(book);
 
         } catch (NoSuchElementException nsee) {
             return null;
         }
-        BookDTO bookDTO = BookConverter.convert(book);
 
         return bookDTO;
     }
