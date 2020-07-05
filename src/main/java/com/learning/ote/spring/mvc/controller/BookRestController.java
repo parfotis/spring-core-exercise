@@ -28,15 +28,21 @@ public class BookRestController {
     }
 
     @GetMapping("/{id}")
-    public BookDTO findById(@PathVariable("id") Long bookId) {
-        return bookService.findById(bookId);
+    public ResponseEntity<BookDTO> findById(@PathVariable("id") Long bookId) {
+        BookDTO bookDTO = bookService.findById(bookId);
+
+        return ResponseEntity
+                .status((bookDTO != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND)
+                .body(bookDTO);
     }
 
     @GetMapping("")
-    public List<BookDTO> findByTitle(@RequestParam("title") String bookTitle, @RequestParam(name = "category", required = false) String category) {
+    public ResponseEntity<List<BookDTO>> findByTitle(@RequestParam("title") String bookTitle, @RequestParam(name = "category", required = false) String category) {
         List<BookDTO> bookDTOList = bookService.findByTitle(bookTitle);
 
-        return bookDTOList;
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(bookDTOList);
     }
 
     @PostMapping
