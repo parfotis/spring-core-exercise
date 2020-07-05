@@ -28,12 +28,8 @@ public class BookRestController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<BookDTO> findById(@PathVariable("id") Long bookId) {
-        BookDTO bookDTO = bookService.findById(bookId);
-
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(bookDTO);
+    public BookDTO findById(@PathVariable("id") Long bookId) {
+        return bookService.findById(bookId);
     }
 
     @GetMapping("")
