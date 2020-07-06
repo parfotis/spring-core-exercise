@@ -10,12 +10,16 @@ public class User {
     private String lastname;
     private String email;
     @Autowired
-    List<Vehicle> vehicles;
+    Vehicle vehicle;
 
     public User() {
     }
 
-    public User(List<Vehicle> vehicles) {
-        this.vehicles = vehicles;
+    public User(Vehicle vehicle) {
+        this.vehicle = vehicle;
+    }
+
+    public Vehicle getVehicle() {
+        return vehicle;
     }
 }
