@@ -9,17 +9,13 @@ public class User {
     private String firstName;
     private String lastname;
     private String email;
+    @Autowired
     List<Vehicle> vehicles;
 
     public User() {
     }
 
-    @Autowired
     public User(List<Vehicle> vehicles) {
         this.vehicles = vehicles;
-    }
-
-    public List<Vehicle> getVehicles() {
-        return vehicles;
     }
 }

@@ -15,7 +15,6 @@ public class Application {
 		ApplicationContext context = new AnnotationConfigApplicationContext(CoreConfiguration.class);
 
 		User user = (User) context.getBean("user");
-		System.out.println("num of Vehicles: " + user.getVehicles()/*.size()*/);
 	}
 
 }
