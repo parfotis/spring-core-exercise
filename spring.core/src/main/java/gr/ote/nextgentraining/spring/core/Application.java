@@ -5,7 +5,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 @SpringBootApplication
 public class Application {
@@ -16,6 +15,7 @@ public class Application {
 		ApplicationContext context = new AnnotationConfigApplicationContext(CoreConfiguration.class);
 
 		User user = (User) context.getBean("user");
+		System.out.println("num of Vehicles: " + user.getVehicles()/*.size()*/);
 	}
 
 }
