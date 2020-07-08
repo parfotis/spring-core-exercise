@@ -28,9 +28,8 @@ public class AuthorServiceImpl implements AuthorService{
     }
 
     @Override
-    public AuthorEntity findById(Long id) {
-        AuthorEntity authorEntity = authorRepository.findById(id).get();
-        return authorEntity;
+    public AuthorDTO findById(Long id) {
+        return authorConverter.convert(authorRepository.findById(id).get());
     }
 
     @Override
@@ -43,6 +42,45 @@ public class AuthorServiceImpl implements AuthorService{
         return authorRepository.findAll().stream()
                 .map(ae -> {return authorConverter.convert(ae);})
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public AuthorDTO save(AuthorDTO authorDTO) {
+        authorRepository.save(authorConverter.convert(authorDTO));
+
+        return authorDTO;
+    }
+
+    @Override
+    public AuthorDTO update(AuthorDTO authorDTONew) {
+        AuthorDTO authorDTOOrig = authorRepository.findById(authorDTONew.getId())
+                .filter(ae -> ae.getId() != null)
+                .map(ae -> {return authorConverter.convert(ae);})
+                .orElse(null);
+        if(authorDTOOrig != null){
+            authorRepository.save(authorConverter.convert(authorDTONew));
+        }
+        else{
+            authorDTONew = null;
+        }
+        return authorDTONew;
+    }
+
+    @Override
+    public AuthorDTO deleteById(Long id) {
+        AuthorDTO authorDTO = authorRepository.findById(id)
+                .map(ae -> {return authorConverter.convert(ae);})
+                .orElse(null);
+        if(authorDTO != null){
+            authorRepository.deleteById(authorDTO.getId());
+        }
+        return authorDTO;
+
+    }
+
+    @Override
+    public AuthorEntity convert(AuthorDTO authorDTO) {
+        return authorConverter.convert(authorDTO);
     }
 
 

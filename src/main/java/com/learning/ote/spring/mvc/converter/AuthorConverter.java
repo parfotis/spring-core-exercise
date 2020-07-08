@@ -22,7 +22,7 @@ public class AuthorConverter {
         return mapper.map(author, AuthorDTO.class);
     }
 
-    public AuthorEntity convert(AuthorDTO authorDto) {
-        return mapper.map(authorDto, AuthorEntity.class);
+    public AuthorEntity convert(AuthorDTO authorDTO) {
+        return mapper.map(authorDTO, AuthorEntity.class);
     }
 }

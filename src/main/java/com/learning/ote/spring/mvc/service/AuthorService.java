@@ -9,11 +9,20 @@ import java.util.Optional;
 
 public interface AuthorService {
 
-    AuthorEntity findById(Long id);
+    AuthorDTO findById(Long id);
 
     List<AuthorEntity> getAllAuthors();
 
     Optional<AuthorEntity> findAuthorByFirstNameAndLastName(String firstName, String lastName);
 
     List<AuthorDTO> findAll();
+
+    AuthorDTO save(AuthorDTO authorDTO);
+
+    AuthorDTO update(AuthorDTO authorDTO);
+
+    AuthorDTO deleteById(Long id);
+
+    AuthorEntity convert(AuthorDTO authorDTO);
+
 }

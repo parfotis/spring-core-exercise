@@ -1,6 +1,7 @@
 package com.learning.ote.spring.mvc.service;
 
 import com.learning.ote.spring.mvc.converter.BookConverter;
+import com.learning.ote.spring.mvc.domain.dto.AuthorDTO;
 import com.learning.ote.spring.mvc.domain.entity.AuthorEntity;
 import com.learning.ote.spring.mvc.domain.entity.BookEntity;
 import com.learning.ote.spring.mvc.domain.dto.BookDTO;
@@ -63,9 +64,9 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public BookDTO save(BookDTO bookDTO) {
-        AuthorEntity author = authorService.findById(bookDTO.getAuthorId());
+        AuthorDTO author = authorService.findById(bookDTO.getAuthorId());
         BookEntity book = BookConverter.convert(bookDTO);
-        book.setAuthor(author);
+        book.setAuthor(authorService.convert(author));
 
         bookRepository.save(book);
 
