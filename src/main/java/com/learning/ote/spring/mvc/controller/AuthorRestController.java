@@ -21,6 +21,17 @@ public class AuthorRestController {
         return authorService.findAll();
     }
 
+    @GetMapping("")
+    public List<AuthorDTO> findTopByLastname(@RequestParam(name = "limit", required = false) Integer limit) {
+        if(limit == null) {
+            return authorService.findAll();
+        }
+        else {
+            return authorService.findTopByLastname(limit);
+        }
+
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<AuthorDTO> findById(@PathVariable("id") Long authorId) {
         AuthorDTO authorDTO = authorService.findById(authorId);
@@ -29,15 +40,6 @@ public class AuthorRestController {
                 .status((authorDTO != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND)
                 .body(authorDTO);
     }
-
-//    @GetMapping("")
-//    public ResponseEntity<List<AuthorDTO>> findByTitle(@RequestParam("title") String authorTitle, @RequestParam(name = "category", required = false) String category) {
-//        List<AuthorDTO> authorDTOList = authorService.findByTitle(authorTitle);
-//
-//        return ResponseEntity
-//                .status(HttpStatus.OK)
-//                .body(authorDTOList);
-//    }
 
     @PostMapping
     public AuthorDTO create(@RequestBody AuthorDTO authorDTO) {

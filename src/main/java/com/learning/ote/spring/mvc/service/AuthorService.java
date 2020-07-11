@@ -25,4 +25,5 @@ public interface AuthorService {
 
     AuthorEntity convert(AuthorDTO authorDTO);
 
+    List<AuthorDTO> findTopByLastname(Integer limit);
 }

@@ -5,6 +5,11 @@ import com.learning.ote.spring.mvc.domain.dto.AuthorDTO;
 import com.learning.ote.spring.mvc.domain.entity.AuthorEntity;
 import com.learning.ote.spring.mvc.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -75,12 +80,18 @@ public class AuthorServiceImpl implements AuthorService{
             authorRepository.deleteById(authorDTO.getId());
         }
         return authorDTO;
-
     }
 
     @Override
     public AuthorEntity convert(AuthorDTO authorDTO) {
         return authorConverter.convert(authorDTO);
+    }
+
+    @Override
+    public List<AuthorDTO> findTopByLastname(Integer limit) {
+        return authorRepository.findAll(PageRequest.of(0, limit, Sort.by(Sort.Direction.ASC, "lastName"))).stream()
+                .map(ae -> {return authorConverter.convert(ae);})
+                .collect(Collectors.toList());
     }
 
 
