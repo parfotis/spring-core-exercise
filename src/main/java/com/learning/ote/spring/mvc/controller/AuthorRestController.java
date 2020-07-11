@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/authors")
@@ -22,14 +23,12 @@ public class AuthorRestController {
     }
 
     @GetMapping("")
-    public List<AuthorDTO> findTopByLastname(@RequestParam(name = "limit", required = false) Integer limit) {
-        if(limit == null) {
-            return authorService.findAll();
-        }
-        else {
-            return authorService.findTopByLastname(limit);
-        }
+    public List<AuthorDTO> findTopByFirstnameLastname(
+            @RequestParam(name = "firstName", required = false) String firstName,
+            @RequestParam(name = "lastName", required = false) String lastName,
+            @RequestParam(name = "limit", required = false) Integer limit) {
 
+        return authorService.findAll(Optional.ofNullable(firstName), Optional.ofNullable(lastName), Optional.ofNullable(limit));
     }
 
     @GetMapping("/{id}")

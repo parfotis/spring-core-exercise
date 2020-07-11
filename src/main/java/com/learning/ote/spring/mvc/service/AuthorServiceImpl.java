@@ -4,16 +4,15 @@ import com.learning.ote.spring.mvc.converter.AuthorConverter;
 import com.learning.ote.spring.mvc.domain.dto.AuthorDTO;
 import com.learning.ote.spring.mvc.domain.entity.AuthorEntity;
 import com.learning.ote.spring.mvc.repository.AuthorRepository;
+import com.learning.ote.spring.mvc.specification.AuthorSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -88,10 +87,40 @@ public class AuthorServiceImpl implements AuthorService{
     }
 
     @Override
-    public List<AuthorDTO> findTopByLastname(Integer limit) {
-        return authorRepository.findAll(PageRequest.of(0, limit, Sort.by(Sort.Direction.ASC, "lastName"))).stream()
-                .map(ae -> {return authorConverter.convert(ae);})
-                .collect(Collectors.toList());
+    public List<AuthorDTO> findAll(Optional<String> firstName, Optional<String> lastName, Optional<Integer> limit) {
+        List<AuthorSpecification> criteriaList = new ArrayList<>();
+        Specification specification;
+
+        firstName.ifPresent(fn -> criteriaList.add(new AuthorSpecification("firstName", fn)));
+        lastName.ifPresent(ln -> criteriaList.add(new AuthorSpecification("lastName", ln)));
+
+        if(criteriaList.size() > 0) {
+            ListIterator<AuthorSpecification> iter = criteriaList.listIterator();
+            specification = Specification.where(iter.next());
+            while(iter.hasNext()) {
+                specification = specification.and(iter.next());
+            }
+
+            if(limit.isPresent()) {
+                return ((Page<AuthorEntity>) authorRepository.findAll(specification, PageRequest.of(0, limit.get(), Sort.by(Sort.Direction.ASC, "lastName"))))
+                        .stream().map(ae -> {return authorConverter.convert(ae);}).collect(Collectors.toList());
+            }
+            else {
+                return ((List<AuthorEntity>) authorRepository.findAll(specification))
+                        .stream().map(ae -> {return authorConverter.convert(ae);}).collect(Collectors.toList());
+            }
+        }
+        else {
+            if(limit.isPresent()) {
+                return ((Page<AuthorEntity>) authorRepository.findAll(PageRequest.of(0, limit.get(), Sort.by(Sort.Direction.ASC, "lastName"))))
+                        .stream().map(ae -> {return authorConverter.convert(ae);}).collect(Collectors.toList());
+            }
+            else {
+                return ((List<AuthorEntity>) authorRepository.findAll())
+                        .stream().map(ae -> {return authorConverter.convert(ae);}).collect(Collectors.toList());
+            }
+        }
+
     }
 
 

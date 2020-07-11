@@ -25,5 +25,5 @@ public interface AuthorService {
 
     AuthorEntity convert(AuthorDTO authorDTO);
 
-    List<AuthorDTO> findTopByLastname(Integer limit);
+    List<AuthorDTO> findAll(Optional<String> firstName, Optional<String> lastName, Optional<Integer> limit);
 }
