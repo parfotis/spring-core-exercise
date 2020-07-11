@@ -15,8 +15,6 @@ public interface AuthorService {
 
     Optional<AuthorEntity> findAuthorByFirstNameAndLastName(String firstName, String lastName);
 
-    List<AuthorDTO> findAll();
-
     AuthorDTO save(AuthorDTO authorDTO);
 
     AuthorDTO update(AuthorDTO authorDTO);

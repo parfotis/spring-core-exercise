@@ -42,13 +42,6 @@ public class AuthorServiceImpl implements AuthorService{
     }
 
     @Override
-    public List<AuthorDTO> findAll() {
-        return authorRepository.findAll().stream()
-                .map(ae -> {return authorConverter.convert(ae);})
-                .collect(Collectors.toList());
-    }
-
-    @Override
     public AuthorDTO save(AuthorDTO authorDTO) {
         authorRepository.save(authorConverter.convert(authorDTO));
 
