@@ -1,6 +1,7 @@
 package com.learning.ote.spring.mvc.controller;
 
 import com.learning.ote.spring.mvc.domain.dto.AuthorDTO;
+import com.learning.ote.spring.mvc.exception.AuthorNotFoundException;
 import com.learning.ote.spring.mvc.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -63,9 +64,12 @@ public class AuthorRestController {
         return ResponseEntity.status((authorRes == null) ? HttpStatus.NOT_FOUND : HttpStatus.OK).body(authorRes);
     }
 
+    @ExceptionHandler(AuthorNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public String handleNotFoundException(){
-        return "resource not found";
+    public ResponseEntity<String> handleException() {
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body("Author not found exception");
     }
 
 }

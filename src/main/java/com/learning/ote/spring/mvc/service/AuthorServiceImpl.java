@@ -3,6 +3,7 @@ package com.learning.ote.spring.mvc.service;
 import com.learning.ote.spring.mvc.converter.AuthorConverter;
 import com.learning.ote.spring.mvc.domain.dto.AuthorDTO;
 import com.learning.ote.spring.mvc.domain.entity.AuthorEntity;
+import com.learning.ote.spring.mvc.exception.AuthorNotFoundException;
 import com.learning.ote.spring.mvc.repository.AuthorRepository;
 import com.learning.ote.spring.mvc.specification.AuthorSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,12 @@ public class AuthorServiceImpl implements AuthorService{
 
     @Override
     public AuthorDTO findById(Long id) {
-        return authorConverter.convert(authorRepository.findById(id).get());
+        try {
+            return authorConverter.convert(authorRepository.findById(id).get());
+        }
+        catch(NoSuchElementException nseEx) {
+            throw new AuthorNotFoundException("Author not found", nseEx.getCause());
+        }
     }
 
     @Override
